@@ -55,6 +55,10 @@ func updateMenu(y map[string]float64) {
 	y["coffee"] = 2.99
 }
 
+func updateAge(x *int) {
+	*x = 3	
+}
+
 func main() {
 
 	// String
@@ -268,5 +272,20 @@ func main() {
 	updateMenu(foodMenu)
 
 	fmt.Println(foodMenu)
+
+	// *************************** Pointers ***************************
+
+	m := &newName // Storing memory address of another variable
+	fmt.Println("Memory address: ", m)
+	fmt.Println("Value at memory address: ", *m)
+
+	newAge := 10
+
+	fmt.Println("Old newAge: ", newAge)
+
+	n := &newAge
+	updateAge(n)
+
+	fmt.Println("new newAge: ", newAge)
 
 }
