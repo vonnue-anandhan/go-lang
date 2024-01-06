@@ -219,4 +219,24 @@ func main() {
 
 	// *************************** Maps (like objects in JS) ***************************
 
+	menu := map[string]float64{"soup": 4.99, "pie": 7.99, "salad": 6.99, "toffee pudding": 3.55}
+
+	fmt.Println(menu)
+	fmt.Println(menu["pie"])
+
+	// Looping maps
+	for k, item := range menu {
+		fmt.Println(k, "-", item)
+	}
+
+	// ints as key type
+	phoneBook := map[int]string{255244: "Mario", 255308: "Yoshi"}
+
+	fmt.Println(phoneBook)
+	fmt.Println(phoneBook[255244])
+
+	phoneBook[255244] = "Claw"
+
+	fmt.Println(phoneBook)
+
 }
