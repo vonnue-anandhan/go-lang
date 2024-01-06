@@ -45,6 +45,16 @@ func getInitials(n string) (string, string) {
 
 var score = 99.5
 
+func updateName(x string) string {
+	x = "Wedge"
+
+	return x
+}
+
+func updateMenu(y map[string]float64) {
+	y["coffee"] = 2.99
+}
+
 func main() {
 
 	// String
@@ -238,5 +248,25 @@ func main() {
 	phoneBook[255244] = "Claw"
 
 	fmt.Println(phoneBook)
+
+	// *************************** Pass by value ***************************
+
+	// Group A types => strings, ints, floats, bools, arrays, structs => makes a copy
+	newName := "Tifa"
+
+	newName = updateName(newName)
+
+	fmt.Println(newName)
+
+	// Group B types => slices, maps, functions => still makes a copy - but its copying the pointer not the actual data
+
+	foodMenu := map[string]float64{
+		"pie":       5.95,
+		"ice cream": 3.99,
+	}
+
+	updateMenu(foodMenu)
+
+	fmt.Println(foodMenu)
 
 }
