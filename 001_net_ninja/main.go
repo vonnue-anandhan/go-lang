@@ -125,4 +125,34 @@ func main() {
 	for index, value := range loopNames {
 		fmt.Printf("The value at index %v is %v \n", index, value)
 	}
+
+	// *************************** Booleans & conditionals ***************************
+
+	personAge := 22
+
+	fmt.Println(personAge >= 20)
+
+	if personAge > 30 {
+		fmt.Println("Age is greater than 30")
+	} else if personAge < 40 {
+		fmt.Println("Age is less than 40")
+	} else {
+		fmt.Println("Nothing")
+	}
+
+	for index, value := range newNames {
+		if index == 1 {
+			fmt.Println("Continuing at pos:", index)
+			continue
+		}
+
+		if index > 2 {
+			fmt.Println("Breaking at pos:", index)
+			break
+
+		}
+
+		fmt.Printf("The value at pos %v is %v \n", index, value)
+	}
+
 }
