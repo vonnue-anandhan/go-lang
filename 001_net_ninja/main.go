@@ -2,9 +2,48 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"sort"
 	"strings"
 )
+
+func sayGreeting(name string) {
+	fmt.Printf("Good morning %v \n", name)
+}
+
+func sayBye(name string) {
+	fmt.Printf("Goodbye %v \n", name)
+}
+
+func cycleNames(names []string, f func(string)) {
+
+	for _, name := range names {
+		f(name)
+	}
+
+}
+
+func circleArea(r float64) float64 {
+	return math.Pi * r * r
+}
+
+func getInitials(n string) (string, string) {
+	s := strings.ToUpper(n)
+	names := strings.Split(s, " ")
+
+	var initials []string
+	for _, name := range names {
+		initials = append(initials, name[:1]) // instead of name[0] in JS
+	}
+
+	if len(initials) > 1 {
+		return initials[0], initials[1]
+	}
+
+	return initials[0], "_"
+}
+
+var score = 99.5
 
 func main() {
 
@@ -154,5 +193,30 @@ func main() {
 
 		fmt.Printf("The value at pos %v is %v \n", index, value)
 	}
+
+	// *************************** Using functions ***************************
+
+	sayGreeting("Mario")
+	sayBye("Mario")
+
+	cycleNames(loopNames, sayGreeting)
+
+	areaOne := circleArea(10)
+	fmt.Printf("Area: %v \n", areaOne)
+
+	fn1, sn1 := getInitials("john doe")
+	fmt.Println(fn1, sn1)
+
+	// *************************** Package scope ***************************
+
+	sayHello("John Doe")
+
+	for _, point := range points {
+		fmt.Println(point)
+	}
+
+	showScore()
+
+	// *************************** Maps (like objects in JS) ***************************
 
 }
