@@ -56,7 +56,7 @@ func updateMenu(y map[string]float64) {
 }
 
 func updateAge(x *int) {
-	*x = 3	
+	*x = 3
 }
 
 func main() {
@@ -115,11 +115,11 @@ func main() {
 
 	// var ages [3]int = [3]int{10, 20, 30}
 
-	var ages = [3]int{10, 20, 30}
-
-	names := []string{"Hitman", "Ipman", "Spiderman", "Superman"}
-
+	var ages = [3]int{10, 20, 30} // array
 	fmt.Println(ages, len(ages))
+
+	names := []string{"Hitman", "Ipman", "Spiderman", "Superman"} // slice
+
 	fmt.Println(names, len(names))
 
 	// Slices (use arrays under the hood)
