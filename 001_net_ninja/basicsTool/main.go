@@ -65,7 +65,8 @@ func promptOptions(b bill) {
 		promptOptions(b)
 
 	case "s":
-		fmt.Println("You chose to save the bill", b)
+		b.save()
+		fmt.Println("You saved the file - ", b.name)
 
 	case "e":
 		return
