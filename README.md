@@ -10,3 +10,7 @@ go
 3. For structs, pointers are automatically de-referenced
 
 4. Whenever a method is called to update value - pass a pointer
+
+### References
+
+1. https://neilalexander.dev/2021/08/29/go-pass-by-value
