@@ -45,10 +45,11 @@ func (b bill) format() string {
 
 // Update tip
 func (b *bill) updateTip(tip float64) {
-	// (*b).tip = tip
+	// (*b).tip = tip - dereferencing 
 	b.tip = tip
 }
 
+// Add an item to the bill
 func (b *bill) addItem(name string, price float64) {
 	b.items[name] = price
 }
