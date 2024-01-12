@@ -5,6 +5,9 @@ import (
 	"math"
 )
 
+
+// Go supports constants of character, string, boolean, and numeric values.
+
 const s string = "constant"
 
 func main() {
