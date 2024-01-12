@@ -288,4 +288,16 @@ func main() {
 
 	fmt.Println("new newAge: ", newAge)
 
+	shapes := []shape{
+		square{length: 15.2},
+		circle{radius: 20.2},
+		circle{radius: 5.2},
+		square{length: 4.2},
+	}
+
+	for _, value := range shapes {
+		printShapeInfo(value)
+		fmt.Println("---")
+	}
+
 }
