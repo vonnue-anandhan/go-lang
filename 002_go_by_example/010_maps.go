@@ -33,7 +33,7 @@ func main() {
 	clear(m)
 	fmt.Println("map:", m)
 
-	// Ff the key is present in the map
+	// If the key is present in the map
 	_, prs := m["k2"]
 	fmt.Println("prs:", prs)
 
