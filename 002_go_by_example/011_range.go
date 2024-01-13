@@ -29,7 +29,7 @@ func main() {
 	}
 
 	// Range on strings iterates over Unicode code point
-	for i, c := range "go" {
+	for i, c := range "AB" {
 		fmt.Println(i, c)
 	}
 }
