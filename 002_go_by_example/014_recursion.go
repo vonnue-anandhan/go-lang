@@ -13,6 +13,5 @@ func fact(n int) int {
 func main() {
 	fmt.Println(fact(7))
 
-	var fib func(n int) int
-
+	
 }
