@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"strconv"
@@ -13,16 +14,31 @@ func writeBalanceToFile(balance float64) {
 	os.WriteFile(accountBalanceFileName, []byte(balanceTxt), 0644)
 }
 
-func getBalanceFromFile() float64 {
-	data, _ := os.ReadFile(accountBalanceFileName)
-	balanceText := string(data)
-	balance, _ := strconv.ParseFloat(balanceText, 64)
+func getBalanceFromFile() (float64, error) {
+	data, err := os.ReadFile(accountBalanceFileName)
 
-	return balance
+	if err != nil {
+		return 1000, errors.New("failed to find balance file")
+	}
+
+	balanceText := string(data)
+	balance, err := strconv.ParseFloat(balanceText, 64)
+
+	if err != nil {
+		return 1000, errors.New("failed to parse stored balance value")
+	}
+
+	return balance, nil
 }
 
 func main() {
-	var accountBalance = getBalanceFromFile()
+	var accountBalance, err = getBalanceFromFile()
+
+	if err != nil {
+		fmt.Println("ERROR")
+		fmt.Println(err)
+		fmt.Println("------------")
+	}
 
 	for {
 		fmt.Println("Welcome to Go bank!")
