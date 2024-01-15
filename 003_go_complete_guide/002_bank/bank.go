@@ -40,8 +40,9 @@ func main() {
 		fmt.Println("------------")
 	}
 
+	fmt.Println("Welcome to Go bank!")
+
 	for {
-		fmt.Println("Welcome to Go bank!")
 		fmt.Println("What do you want to do?")
 
 		fmt.Println("1. Check balance")
