@@ -5,23 +5,34 @@ import (
 	"math"
 )
 
-func main() {
+func outputText(text string) {
+	fmt.Print(text)
+}
+
+func calculateFutureValues(investmentAmount, expectedReturnRate, years float64) (float64, float64) {
 	const inflationRate = 2.5
+
+	futureValue := investmentAmount * math.Pow((1+(expectedReturnRate)/100), years)
+	futureRealValue := futureValue / math.Pow(1+inflationRate/100, years)
+
+	return futureValue, futureRealValue
+}
+
+func main() {
 
 	var investmentAmount, years float64
 	expectedReturnRate := 5.5
 
-	fmt.Print("Investment amount: ")
+	outputText("Investment amount: ")
 	fmt.Scan(&investmentAmount)
 
-	fmt.Print("Years: ")
+	outputText("Years: ")
 	fmt.Scan(&years)
 
-	fmt.Print("Expected return rate: ")
+	outputText("Expected return rate: ")
 	fmt.Scan(&expectedReturnRate)
 
-	futureValue := investmentAmount * math.Pow((1+(expectedReturnRate)/100), years)
-	futureRealValue := futureValue / math.Pow(1+inflationRate/100, years)
+	futureValue, futureRealValue := calculateFutureValues(investmentAmount, expectedReturnRate, years)
 
 	formattedFV := fmt.Sprintf("Future value: %.1f\n", futureValue)
 	formattedRFV := fmt.Sprintf("Future value (adjusted for inflation): %.1f\n", futureRealValue)
