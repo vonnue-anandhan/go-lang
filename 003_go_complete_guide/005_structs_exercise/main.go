@@ -3,13 +3,51 @@ package main
 import (
 	"bufio"
 	"example.com/note/note"
+	"example.com/note/todo"
 	"fmt"
 	"os"
 	"strings"
 )
 
+type saver interface { // only 1 method ? then method + er for interface name
+	// Save(int, string) error
+	Save() error
+}
+
+// type displayer interface {
+// 	Display()
+// }
+
+// type outputtable interface {
+// 	Save() error
+// 	Display()
+// }
+
+type outputtable interface {
+	saver
+	Display()
+}
+
 func main() {
 	title, content := getNoteData()
+	todoText := getUserInput("Todo text: ")
+
+	// todo
+
+	todo, err := todo.New(todoText)
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	err = outputData(todo)
+
+	if err != nil {
+		return
+	}
+
+	// note
 
 	userNote, err := note.New(title, content)
 
@@ -18,16 +56,34 @@ func main() {
 		return
 	}
 
-	userNote.Display()
-	err = userNote.Save()
+	err = saveData(userNote)
 
 	if err != nil {
-		fmt.Println("Saving the note failed.")
+		fmt.Println(err)
 		return
 	}
 
-	fmt.Println("Saving the note succeeded!")
+	outputData(userNote)
 
+}
+
+func outputData(data outputtable) error {
+	data.Display()
+
+	return saveData(data)
+}
+
+func saveData(data saver) error {
+	err := data.Save()
+
+	if err != nil {
+		fmt.Println("Saving the data failed.")
+		return err
+	}
+
+	fmt.Println("Saving the data succeeded!")
+
+	return nil
 }
 
 func getNoteData() (string, string) {
