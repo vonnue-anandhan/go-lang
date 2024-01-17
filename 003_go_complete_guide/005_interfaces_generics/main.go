@@ -28,6 +28,42 @@ type outputtable interface {
 	Display()
 }
 
+// Special "any value allowed" type
+func printSomething(value interface{}) { // Type switches
+	// switch value.(type) {
+	// case int:
+	// 	fmt.Println("Integer: ", value)
+
+	// case float64:
+	// 	fmt.Println("Float64: ", value)
+
+	// case string:
+	// 	fmt.Println("String: ", value)
+
+	// }
+
+	// Extracting type info from values
+
+	intVal, ok := value.(int)
+
+	if ok {
+		fmt.Println("Integer: ", intVal)
+	}
+
+	float64Val, ok := value.(float64)
+
+	if ok {
+		fmt.Println("Float64: ", float64Val)
+	}
+
+	stringVal, ok := value.(string)
+
+	if ok {
+		fmt.Println("Float64: ", stringVal)
+	}
+
+}
+
 func main() {
 	title, content := getNoteData()
 	todoText := getUserInput("Todo text: ")
@@ -65,6 +101,9 @@ func main() {
 
 	outputData(userNote)
 
+	printSomething(todo)
+
+	fmt.Println(superAdd(1, 2))
 }
 
 func outputData(data outputtable) error {
@@ -110,4 +149,19 @@ func getUserInput(prompt string) string {
 	text = strings.TrimSuffix(text, "\r") // for windows
 
 	return text
+}
+
+func superAdd[T int | float64 | string](a, b T) T {
+	// aInt, isAInt := a.(int)
+	// bInt, isBInt := b.(int)
+
+	// if isAInt && isBInt {
+	// 	return aInt + bInt
+
+	// }
+
+	// return nil
+
+	return a + b
+
 }
