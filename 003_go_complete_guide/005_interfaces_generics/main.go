@@ -151,6 +151,8 @@ func getUserInput(prompt string) string {
 	return text
 }
 
+// ************ GENERICS ************
+
 func superAdd[T int | float64 | string](a, b T) T {
 	// aInt, isAInt := a.(int)
 	// bInt, isBInt := b.(int)
