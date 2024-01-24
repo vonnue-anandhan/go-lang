@@ -5,57 +5,38 @@ import (
 	"sync"
 )
 
+// ******* Channels *******
+
 func main() {
-	fmt.Println("Race condition - learncodeonline.in")
+	fmt.Println("Channels in go lang")
 
+	myCh := make(chan int, 2)
 	wg := &sync.WaitGroup{}
-	mut := &sync.RWMutex{}
 
-	var scores = []int{0}
+	wg.Add(2)
 
-	wg.Add(4)
-	go func(wg *sync.WaitGroup, m *sync.RWMutex) {
-		fmt.Println("One r")
+	// receive value from channel
+	go func(ch <-chan int, wg *sync.WaitGroup) {
+		// close(ch) receive only channel
+		defer (*wg).Done()
 
-		mut.Lock()
-		scores = append(scores, 1)
-		mut.Unlock()
+		val, isChannelOpen := <-ch
 
-		defer wg.Done()
-	}(wg, mut)
+		if isChannelOpen {
+			fmt.Println(<-ch)
+			fmt.Println(val)
+		}
+	}(myCh, wg)
 
-	// wg.Add(1)
-	go func(wg *sync.WaitGroup, m *sync.RWMutex) {
-		fmt.Println("Two r")
+	// pass value into channel
+	go func(ch chan<- int, wg *sync.WaitGroup) {
+		defer (*wg).Done()
 
-		mut.Lock()
-		scores = append(scores, 2)
-		mut.Unlock()
+		ch <- 5
 
-		defer wg.Done()
-	}(wg, mut)
-
-	// wg.Add(1)
-	go func(wg *sync.WaitGroup, m *sync.RWMutex) {
-		fmt.Println("Three r")
-
-		mut.Lock()
-		scores = append(scores, 3)
-		mut.Unlock()
-
-		defer wg.Done()
-	}(wg, mut)
-
-	go func(wg *sync.WaitGroup, m *sync.RWMutex) {
-		fmt.Println("Four r")
-
-		mut.RLock()
-		fmt.Println(scores)
-		mut.RUnlock()
-
-		defer wg.Done()
-	}(wg, mut)
+		close(ch)
+		// ch <- 6
+	}(myCh, wg)
 
 	wg.Wait()
-	fmt.Println(scores)
 }

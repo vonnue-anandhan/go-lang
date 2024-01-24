@@ -1,42 +1,64 @@
-package mutex
+package mutexu
 
 import (
 	"fmt"
-	"net/http"
 	"sync"
 )
 
-var wg sync.WaitGroup
+func test() {
+	fmt.Println("Race condition - learncodeonline.in")
 
-var signals = []string{"test"}
+	wg := &sync.WaitGroup{}
+	mut := &sync.RWMutex{}
 
-var mut sync.Mutex
+	var scores = []int{0}
 
-func getStatusCode(endpoint string) {
-	defer wg.Done()
+	wg.Add(4)
+	go func(wg *sync.WaitGroup, m *sync.RWMutex) {
+		defer wg.Done()
 
-	res, err := http.Get(endpoint)
+		fmt.Println("One r")
 
-	if err != nil {
-		fmt.Println("Oops in endpoint")
-	} else {
 		mut.Lock()
-		signals = append(signals, endpoint)
+		scores = append(scores, 1)
 		mut.Unlock()
 
-		fmt.Printf("%d status code for website %s\n", res.StatusCode, endpoint)
-	}
-}
+	}(wg, mut)
 
-func Test() {
-	websites := []string{"https://lco.dev", "https://go.dev", "https://google.com", "https://fb.com", "https://github.com"}
+	// wg.Add(1)
+	go func(wg *sync.WaitGroup, m *sync.RWMutex) {
+		defer wg.Done()
 
-	for _, website := range websites {
-		go getStatusCode(website)
-		wg.Add(1)
-	}
+		fmt.Println("Two r")
+
+		mut.Lock()
+		scores = append(scores, 2)
+		mut.Unlock()
+
+	}(wg, mut)
+
+	// wg.Add(1)
+	go func(wg *sync.WaitGroup, m *sync.RWMutex) {
+		defer wg.Done()
+
+		fmt.Println("Three r")
+
+		mut.Lock()
+		scores = append(scores, 3)
+		mut.Unlock()
+	}(wg, mut)
+
+	go func(wg *sync.WaitGroup, m *sync.RWMutex) {
+		defer wg.Done()
+
+		fmt.Println("Four r")
+
+		mut.RLock()
+		fmt.Println(scores)
+		mut.RUnlock()
+
+	}(wg, mut)
 
 	wg.Wait()
-
-	fmt.Println(signals)
+	fmt.Println(scores)
 }
