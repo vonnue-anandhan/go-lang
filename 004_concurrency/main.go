@@ -15,6 +15,17 @@ func main() {
 
 	wg.Add(2)
 
+	// pass value into channel
+	go func(ch chan<- int, wg *sync.WaitGroup) {
+		defer (*wg).Done()
+
+		ch <- 5
+		// ch <- 10
+
+		close(ch)
+		// ch <- 6
+	}(myCh, wg)
+
 	// receive value from channel
 	go func(ch <-chan int, wg *sync.WaitGroup) {
 		// close(ch) receive only channel
@@ -26,16 +37,6 @@ func main() {
 			fmt.Println(<-ch)
 			fmt.Println(val)
 		}
-	}(myCh, wg)
-
-	// pass value into channel
-	go func(ch chan<- int, wg *sync.WaitGroup) {
-		defer (*wg).Done()
-
-		ch <- 5
-
-		close(ch)
-		// ch <- 6
 	}(myCh, wg)
 
 	wg.Wait()
