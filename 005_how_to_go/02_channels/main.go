@@ -3,17 +3,24 @@ package main
 import "fmt"
 
 func main() {
-	c := make(chan int)
+	ch := gen()
 
-	go func() {
-		c <- 42
-		close(c)
-	}()
+	for value := range ch {
+		fmt.Println(value)
+	}
 
-	v, ok := <-c
-	fmt.Println(v, ok)
+}
 
-	_, okk := <-c
+func gen() <-chan int {
+	ch := make(chan int)
 
-	fmt.Println(okk, <-c)
+	// go func() {
+		for i := 0; i < 100; i++ {
+			ch <- i
+		}
+
+		close(ch)
+	// }()
+
+	return ch
 }
