@@ -13,6 +13,8 @@ go
 
 2. go mod tidy
 
+3. go test -coverprofile=coverage.out && go tool cover -html=coverage.out
+
 ### References
 
 1. https://neilalexander.dev/2021/08/29/go-pass-by-value
