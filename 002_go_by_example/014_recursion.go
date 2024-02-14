@@ -10,8 +10,6 @@ func fact(n int) int {
 	return n * fact(n-1)
 }
 
-func main() {
+func main14() {
 	fmt.Println(fact(7))
-
-	
 }

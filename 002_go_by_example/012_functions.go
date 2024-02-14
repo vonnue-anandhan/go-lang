@@ -27,7 +27,7 @@ func sum(nums ...int) {
 	fmt.Println(total)
 }
 
-func main() {
+func main12() {
 
 	res := plus(1, 2)
 	fmt.Println("1+2 =", res)

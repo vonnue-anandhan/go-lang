@@ -5,7 +5,7 @@ import (
 	"maps"
 )
 
-func main() {
+func main10() {
 
 	// Create an empty map
 	m := make(map[string]int)

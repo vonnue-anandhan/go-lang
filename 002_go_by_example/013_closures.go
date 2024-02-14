@@ -12,7 +12,7 @@ func incrementor() func() int {
 	}
 }
 
-func main() {
+func main13() {
 	inc := incrementor()
 
 	fmt.Println(inc())

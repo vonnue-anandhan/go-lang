@@ -7,7 +7,7 @@ import (
 
 // In Go, the concept of a character is called a rune - it’s an integer that represents a Unicode code point
 
-func main() {
+func main16() {
 	const s = "สวัสดี"
 
 	// Go string literals are UTF-8 encoded text

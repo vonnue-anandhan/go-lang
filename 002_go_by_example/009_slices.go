@@ -5,7 +5,7 @@ import (
 	// "slices"
 )
 
-func main() {
+func main9() {
 
 	// An uninitialized slice equals to nil and has length 0.
 	var s []string
