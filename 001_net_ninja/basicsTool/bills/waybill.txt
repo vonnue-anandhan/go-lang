@@ -1,5 +1,0 @@
-Bill breakdown: 
-pie:                      ...$2.55 
-cake:                     ...$3 
-tip:                      ...$5
-total:                    ...$5.55
