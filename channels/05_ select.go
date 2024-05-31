@@ -2,6 +2,12 @@ package channels
 
 import "fmt"
 
+// The primary use case for select is to wait on multiple channels
+// The select statement blocks until one of its cases can proceed
+// If multiple cases are ready, one is chosen at random
+// If none of the channels are ready and there is no default case, the select statement will block indefinitely until at least one of the channels is ready
+// If a default case is present, it will execute immediately if none of the other cases can proceed, making the select statement non-blocking in that scenario
+
 func TestSelect() {
 	even := make(chan int)
 	odd := make(chan int)

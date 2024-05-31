@@ -2,7 +2,7 @@ package channels
 
 import "fmt"
 
-// Range blocks until the channel is closed
+// When using range on an unbuffered channel, the loop will block on each iteration until it receives a value or the channel is closed
 
 func TestRange() {
 	c := make(chan int)
