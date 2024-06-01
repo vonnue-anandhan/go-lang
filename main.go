@@ -1,9 +1,9 @@
 package main
 
 import (
-	"golearn/errors"
+	"golearn/testing"
 )
 
 func main() {
-	errors.TestRecover()
+	testing.RunMySum()
 }
