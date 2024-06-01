@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	errors.TestErrors()
+	errors.TestRecover()
 }
