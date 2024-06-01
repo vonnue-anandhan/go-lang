@@ -20,5 +20,4 @@ func TestRecover() {
 	myPanic()
 
 	fmt.Println("After myPanic()")
-
 }
