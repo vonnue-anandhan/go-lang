@@ -1,7 +1,9 @@
+// Package testing holds few examples of testing in go lang
 package testing
 
 import "fmt"
 
+// MySum adds an unlimited number of values of type int
 func MySum(numbers ...int) int {
 	sum := 0
 

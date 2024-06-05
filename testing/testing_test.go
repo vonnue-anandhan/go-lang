@@ -11,7 +11,7 @@ func TestMySum(t *testing.T) {
 	// 	t.Errorf("Expected %d, got %d", want, got)
 	// }
 
-	// Table test
+	// Table test - write a series of test to run, allowing us to test a variety of situations
 	type test struct {
 		input []int
 		want  int

@@ -15,6 +15,8 @@ go
 
 3. go test -coverprofile=coverage.out && go tool cover -html=coverage.out
 
+4. godoc -http:8080
+
 ### References
 
 1. https://neilalexander.dev/2021/08/29/go-pass-by-value
