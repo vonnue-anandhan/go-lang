@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	testing.RunMySum()
+	testing.RunBenchmarking()
 }
