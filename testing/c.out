@@ -1,0 +1,7 @@
+mode: set
+golearn/testing/benchmarking.go:5.29,7.2 1 1
+golearn/testing/benchmarking.go:9.24,11.2 1 0
+golearn/testing/testing.go:7.32,10.33 2 1
+golearn/testing/testing.go:10.33,12.3 1 1
+golearn/testing/testing.go:14.2,14.12 1 1
+golearn/testing/testing.go:17.17,21.2 3 0
