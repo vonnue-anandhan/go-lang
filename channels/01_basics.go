@@ -2,7 +2,7 @@ package channels
 
 import "fmt"
 
-// Code will BLOCK unless send & receive happens at the same time / use a buffered channel
+// Code will BLOCK unless send & receive happens at the same time or use a buffered channel
 // Receive only without send from a buffered channel is also BLOCKING
 // Receive only channels cannot be closed
 
