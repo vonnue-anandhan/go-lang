@@ -89,5 +89,4 @@ func TestBasics() {
 	// bufferedWithoutSend() ERROR
 	fullBufferedAndChildRoutine()
 	// fullBuffered() // ERROR
-
 }
