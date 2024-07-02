@@ -1,9 +1,9 @@
 package main
 
 import (
-	"golearn/testing"
+	"golearn/channels"
 )
 
 func main() {
-	testing.RunBenchmarking()
+	channels.TestBasics()
 }

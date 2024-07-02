@@ -58,6 +58,27 @@ func bufferedWithoutSend() {
 	fmt.Println(<-c)
 }
 
+func fullBufferedAndChildRoutine() {
+	c := make(chan int, 2)
+
+	c <- 1
+	c <- 2
+
+	go func() {
+		// Blocks because channel is full
+		// Since we are in a goroutine, main thread can continue
+		c <- 3
+	}()
+}
+
+func fullBuffered() {
+	c := make(chan int, 2)
+
+	c <- 1
+	c <- 2
+	c <- 3
+}
+
 func TestBasics() {
 	// blocking() ERROR
 	nonBlocking()
@@ -66,4 +87,7 @@ func TestBasics() {
 	// onlySend() ERROR
 	onlySendBuffered()
 	// bufferedWithoutSend() ERROR
+	fullBufferedAndChildRoutine()
+	fullBuffered() // ERROR
+
 }
